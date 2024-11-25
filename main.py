@@ -6,7 +6,7 @@ import streamlit as st
 
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
-    st.title("This is a title")
+    st.title("This is a hello world")
 
 
 # Press the green button in the gutter to run the script.
