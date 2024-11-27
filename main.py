@@ -109,7 +109,8 @@ def print_hi(name):
 
         """"""
         inventory_api_key = st.secrets["CALL_INVENTORY_ID"]
-        st.write(inventory_api_key)
+
+        
 
 
 
