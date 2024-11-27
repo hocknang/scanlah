@@ -65,12 +65,6 @@ def print_hi(name):
         theme="material",  # Theme that applies borders to cells
     )
 
-    # Extract filtered data
-    filtered_data = grid_response["data"]
-
-    st.subheader("Filtered Data Output:")
-    st.dataframe(filtered_data)
-
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     print_hi('PyCharm')
