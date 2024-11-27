@@ -10,24 +10,24 @@ def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
     st.title("Title")
 
-    # Sample Data
     data = {
-        "Name": ["Alice", "Bob", "Charlie", "Diana"],
-        "Age": [25, 30, 35, 40],
-        "Country": ["USA", "UK", "Canada", "Australia"],
-        "Profession": ["Engineer", "Doctor", "Artist", "Scientist"]
+        "Name": ["Alice", "Bob", "Charlie", "Diana", "Eva", "Frank", "Grace", "Hannah", "Isaac", "Jack"],
+        "Age": [25, 30, 35, 40, 22, 28, 31, 36, 42, 29],
+        "Country": ["USA", "UK", "Canada", "Australia", "USA", "UK", "Canada", "Australia", "USA", "UK"],
+        "Profession": ["Engineer", "Doctor", "Artist", "Scientist", "Engineer", "Doctor", "Artist", "Scientist",
+                       "Engineer", "Doctor"]
     }
 
     df = pd.DataFrame(data)
 
-    st.subheader("Table with No Whitespace")
+    st.subheader("Table with Scrollable View and No Whitespace")
 
     # Configure Ag-Grid options
     gb = GridOptionsBuilder.from_dataframe(df)
 
     # Enable filtering for all columns
     gb.configure_default_column(filter=True)  # Add filter capability
-    gb.configure_grid_options(domLayout="autoHeight")  # Dynamic table height
+    gb.configure_grid_options(domLayout="normal")  # Use normal layout for scrolling
 
     # Manually configure column definitions with customized filter alignment
     column_defs = [
@@ -76,21 +76,17 @@ def print_hi(name):
     # Apply custom CSS to the grid container
     st.markdown(f'<style>{custom_css}</style>', unsafe_allow_html=True)
 
-    # Render Ag-Grid with borders and filters
+    # Render Ag-Grid with a fixed height and scrollbar
     grid_response = AgGrid(
         df,
         gridOptions=grid_options,
         enable_enterprise_modules=False,
         update_mode="value_changed",
         fit_columns_on_grid_load=True,  # Adjust column width
-        theme="alpine",  # Theme that applies borders to cells
+        height=300,  # Set the fixed height for the table
+        theme="material",  # Theme that applies borders to cells
     )
 
-    # Extract filtered data
-    filtered_data = grid_response["data"]
-
-    st.subheader("Filtered Data Output:")
-    st.dataframe(filtered_data)
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
