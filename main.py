@@ -19,16 +19,19 @@ def print_hi(name):
 
     df = pd.DataFrame(data)
 
-    st.subheader("Interactive Table with Filters for All Columns")
+    st.subheader("Consistent Table Layout")
 
     # Configure Ag-Grid options
     gb = GridOptionsBuilder.from_dataframe(df)
 
     # Enable filtering on all columns
     gb.configure_default_column(filter=True)  # Enables filters for all columns
-    gb.configure_grid_options(domLayout='normal')  # Makes the table responsive
 
-    # Build the grid options
+    # Set layout options
+    gb.configure_grid_options(domLayout="autoHeight")  # Auto adjust height
+    gb.configure_column("Name", cellStyle={"textAlign": "center"})  # Example: Center align column
+
+    # Build grid options
     grid_options = gb.build()
 
     # Render Ag-Grid table
@@ -37,11 +40,13 @@ def print_hi(name):
         gridOptions=grid_options,
         enable_enterprise_modules=False,
         update_mode="value_changed",
-        fit_columns_on_grid_load=True,
+        fit_columns_on_grid_load=True,  # Auto-adjust column width
+        height=300,  # Set height to prevent extra space
+        theme="balham",  # Clean minimal theme
     )
 
-    # Get filtered and displayed data
-    filtered_data = grid_response['data']
+    # Extract filtered data
+    filtered_data = grid_response["data"]
 
 
 # Press the green button in the gutter to run the script.
