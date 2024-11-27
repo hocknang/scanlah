@@ -40,7 +40,7 @@ def print_hi(name):
             text-align: center;  /* Optional: Center-align header text */
         }
         .ag-theme-material .ag-row {
-            border-bottom: 1px solid black !important;  /* Optional: add row borders */
+            border-bottom: 1px solid #ddd;  /* Optional: add row borders */
         }
     """
 
@@ -60,6 +60,8 @@ def print_hi(name):
         height=300,  # Fixed height
         theme="material",  # Base theme
     )
+
+
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
