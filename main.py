@@ -19,17 +19,33 @@ def print_hi(name):
 
     df = pd.DataFrame(data)
 
-    st.subheader("Filter All Columns in the Table")
+    st.subheader("Interactive Table with Filters for All Columns")
 
     # Configure Ag-Grid options
     gb = GridOptionsBuilder.from_dataframe(df)
 
-    # Enable filtering for all columns
-    gb.configure_default_column(filter=True)  # Allows filtering on all columns
-    gb.configure_grid_options(domLayout='normal')  # Makes table layout responsive
+    # Enable filtering on all columns
+    gb.configure_default_column(filter=True)  # Enables filters for all columns
+    gb.configure_grid_options(domLayout='normal')  # Makes the table responsive
 
     # Build the grid options
     grid_options = gb.build()
+
+    # Render Ag-Grid table
+    grid_response = AgGrid(
+        df,
+        gridOptions=grid_options,
+        enable_enterprise_modules=False,
+        update_mode="value_changed",
+        fit_columns_on_grid_load=True,
+    )
+
+    # Get filtered and displayed data
+    filtered_data = grid_response['data']
+
+    st.subheader("Filtered Data Output:")
+    st.dataframe(filtered_data)
+
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
