@@ -101,8 +101,8 @@ def print_hi(name):
 
     if not st.session_state["authenticated"]:
         st.title("Login")
-        username = st.text_input("Username")
-        password = st.text_input("Password", type="password")
+        username = st.text_input("Username)", placeholder="Type Username")
+        password = st.text_input("Password", type="password", placeholder="Type Password")
 
         if st.button("Login"):
             if username == "user1" and password == "password1":
