@@ -88,7 +88,7 @@ def print_hi(name):
         enable_enterprise_modules=False,
         update_mode="value_changed",
         fit_columns_on_grid_load=True,  # Adjust column width
-        theme="material",  # Theme that applies borders to cells
+        theme="balham",  # Theme that applies borders to cells
     )
 
 
