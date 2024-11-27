@@ -111,7 +111,7 @@ def print_hi(name):
         """"""
         inventory_api_key = st.secrets["CALL_INVENTORY_ID"]
 
-        response = requests.get(url)
+        response = requests.get(inventory_api_key)
 
         # Check if the request was successful
         if response.status_code == 200:
