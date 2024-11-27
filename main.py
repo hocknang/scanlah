@@ -62,8 +62,14 @@ def print_hi(name):
         update_mode="value_changed",
         fit_columns_on_grid_load=True,  # Adjust column width
         height=300,  # Fixed height
-        theme="streamlit",  # Theme that applies borders to cells
+        theme="material",  # Theme that applies borders to cells
     )
+
+    # Extract filtered data
+    filtered_data = grid_response["data"]
+
+    st.subheader("Filtered Data Output:")
+    st.dataframe(filtered_data)
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
