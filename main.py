@@ -94,27 +94,27 @@ def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
     st.title("Scanlah Database")
 
-    authenticated = False
+    if 'authenticated' not in st.session_state:
+        st.session_state['authenticated'] = False
 
-    # Login logic
-    if not authenticated:
+    # If user is authenticated, hide login form and show the welcome message
+    if not st.session_state['authenticated']:
         st.title("Login")
         username = st.text_input("Username")
         password = st.text_input("Password", type="password")
 
         if st.button("Login"):
             if username == "user1" and password == "password1":
-                authenticated = True  # Set to True after successful login
-                st.write("Login Successful!")
+                st.session_state['authenticated'] = True  # Update to True after successful login
+                st.success("Login Successful!")
                 st.balloons()  # Optional: Show balloons for success
             else:
                 st.error("Invalid username or password")
-
     else:
-        # Once authenticated, hide the login form and show welcome message
+        # Show the welcome message if authenticated
         st.title(f"Welcome, {username}!")
         if st.button("Logout"):
-            authenticated = False  # Reset authentication status
+            st.session_state['authenticated'] = False  # Reset authentication state
             st.write("You have been logged out.")
 
 
