@@ -13,7 +13,10 @@ def print_hi(name):
 
     json_data = '''
     [
-     
+      {"Name": "Alice", "Age": 25, "Country": "USA", "Profession": "Engineer"},
+      {"Name": "Bob", "Age": 30, "Country": "UK", "Profession": "Doctor"},
+      {"Name": "Charlie", "Age": 35, "Country": "Canada", "Profession": "Artist"},
+      {"Name": "Diana", "Age": 40, "Country": "Australia", "Profession": "Scientist"}
     ]
     '''
 
