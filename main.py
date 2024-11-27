@@ -94,28 +94,36 @@ def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
     st.title("Scanlah Database")
 
-    if 'authenticated' not in st.session_state:
-        st.session_state['authenticated'] = False
+    # Initialize session state if not already present
+
+
+if 'authenticated' not in st.session_state:
+    st.session_state['authenticated'] = False
+if 'username' not in st.session_state:
+    st.session_state['username'] = ''
 
     # If user is authenticated, hide login form and show the welcome message
-    if not st.session_state['authenticated']:
-        st.title("Login")
-        username = st.text_input("Username")
-        password = st.text_input("Password", type="password")
+if not st.session_state['authenticated']:
+    st.title("Login")
+    # Ensure username and password are only set when not authenticated
+    username = st.text_input("Username")
+    password = st.text_input("Password", type="password")
 
-        if st.button("Login"):
-            if username == "user1" and password == "password1":
-                st.session_state['authenticated'] = True  # Update to True after successful login
-                st.success("Login Successful!")
-                st.balloons()  # Optional: Show balloons for success
-            else:
-                st.error("Invalid username or password")
-    else:
-        # Show the welcome message if authenticated
-        st.title(f"Welcome, {username}!")
-        if st.button("Logout"):
-            st.session_state['authenticated'] = False  # Reset authentication state
-            st.write("You have been logged out.")
+    if st.button("Login"):
+        if username == "user1" and password == "password1":
+            st.session_state['authenticated'] = True  # Set to True after successful login
+            st.session_state['username'] = username  # Store the username in session_state
+            st.success("Login Successful!")
+            st.balloons()  # Optional: Show balloons for success
+        else:
+            st.error("Invalid username or password")
+else:
+    # After successful login, display the welcome message
+    st.title(f"Welcome, {st.session_state['username']}!")
+    if st.button("Logout"):
+        st.session_state['authenticated'] = False  # Reset authentication state
+        st.session_state['username'] = ''  # Clear the username in session state
+        st.write("You have been logged out.")
 
 
 # Press the green button in the gutter to run the script.
