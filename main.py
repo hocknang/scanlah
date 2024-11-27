@@ -96,25 +96,26 @@ def print_hi(name):
 
     if "authenticated" not in st.session_state:
         st.session_state["authenticated"] = False
-        st.session_state["username"] = ""
-        st.session_state["password"] = ""
 
+    # Login logic
     if not st.session_state["authenticated"]:
         st.title("Login")
-        username = st.text_input("Username)", placeholder="Type Username")
-        password = st.text_input("Password", type="password", placeholder="Type Password")
+        username = st.text_input("Username")
+        password = st.text_input("Password", type="password")
 
         if st.button("Login"):
             if username == "user1" and password == "password1":
                 st.session_state["authenticated"] = True
-                st.session_state["username"] = username
+                # Simulate a re-run by setting query params
+                st.experimental_set_query_params()  # Triggers the page to refresh
             else:
                 st.error("Invalid username or password")
     else:
-        st.title(f"Welcome, {st.session_state['username']}!")
+        st.title(f"Welcome!")
         if st.button("Logout"):
             st.session_state["authenticated"] = False
-            st.session_state.clear()  # This will reset everything and trigger a re-run
+            # Simulate a re-run by setting query params
+            st.experimental_set_query_params()  # Triggers the page to refresh
 
 
 # Press the green button in the gutter to run the script.
