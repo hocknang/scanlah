@@ -31,22 +31,6 @@ def print_hi(name):
     # Build the grid options
     grid_options = gb.build()
 
-    # Render Ag-Grid in Streamlit
-    grid_response = AgGrid(
-        df,
-        gridOptions=grid_options,
-        enable_enterprise_modules=False,
-        update_mode="value_changed",
-        fit_columns_on_grid_load=True,
-    )
-
-    # Extract filtered data
-    filtered_data = grid_response['data']
-
-    st.subheader("Filtered Data Output:")
-    st.dataframe(filtered_data)
-
-
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     print_hi('PyCharm')
