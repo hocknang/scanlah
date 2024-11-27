@@ -89,7 +89,7 @@ def print_hi(name):
         update_mode="value_changed",
         fit_columns_on_grid_load=True,  # Adjust column width
         height=400,  # Set the fixed height for the table
-        theme="material",  # Theme that applies borders to cells
+        theme="alpine",  # Theme that applies borders to cells
     )
 
 
