@@ -83,7 +83,6 @@ def print_hi(name):
         enable_enterprise_modules=False,
         update_mode="value_changed",
         fit_columns_on_grid_load=True,  # Adjust column width
-        height=300,  # Fixed height
         theme="alpine",  # Theme that applies borders to cells
     )
 
