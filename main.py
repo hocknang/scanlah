@@ -10,6 +10,7 @@ def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
     st.title("Title")
 
+    # Sample Data
     data = {
         "Name": ["Alice", "Bob", "Charlie", "Diana"],
         "Age": [25, 30, 35, 40],
@@ -19,7 +20,7 @@ def print_hi(name):
 
     df = pd.DataFrame(data)
 
-    st.subheader("Table with Borders for Each Cell")
+    st.subheader("Table with No Whitespace")
 
     # Configure Ag-Grid options
     gb = GridOptionsBuilder.from_dataframe(df)
@@ -45,14 +46,35 @@ def print_hi(name):
     ]
 
     # Align the "Age" filter to the right (filter alignment)
-    # For numeric columns like "Age", you can set the filter alignment here
     column_defs[1]["filterParams"] = {
         "textAlign": "right"  # Align Age filter to the right
     }
 
-    # Include the columnDefs in the grid options
+    # Apply the custom column definitions
     grid_options = gb.build()
-    grid_options["columnDefs"] = column_defs  # Set the custom columnDefs
+    grid_options["columnDefs"] = column_defs  # Set custom columnDefs
+
+    # Custom CSS to remove whitespace (padding/margin) from the table
+    custom_css = """
+        .ag-theme-material .ag-cell,
+        .ag-theme-material .ag-header-cell {
+            border: 1px solid black !important;  /* Border for each cell */
+            padding: 0px !important;  /* Remove cell padding */
+            margin: 0px !important;  /* Remove margin */
+        }
+        .ag-theme-material .ag-header {
+            margin: 0px !important;  /* Remove header margin */
+        }
+        .ag-theme-material .ag-row {
+            border-bottom: 1px solid #ddd !important;  /* Optional: add row borders */
+        }
+        .ag-theme-material .ag-body-viewport {
+            padding: 0px !important;  /* Remove padding from viewport */
+        }
+    """
+
+    # Apply custom CSS to the grid container
+    st.markdown(f'<style>{custom_css}</style>', unsafe_allow_html=True)
 
     # Render Ag-Grid with borders and filters
     grid_response = AgGrid(
@@ -62,8 +84,14 @@ def print_hi(name):
         update_mode="value_changed",
         fit_columns_on_grid_load=True,  # Adjust column width
         height=300,  # Fixed height
-        theme="streamlit",  # Theme that applies borders to cells
+        theme="material",  # Theme that applies borders to cells
     )
+
+    # Extract filtered data
+    filtered_data = grid_response["data"]
+
+    st.subheader("Filtered Data Output:")
+    st.dataframe(filtered_data)
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
