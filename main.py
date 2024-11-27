@@ -94,28 +94,7 @@ def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
     st.title("Scanlah Database")
 
-    # Initialize session state
-    if "authenticated" not in st.session_state:
-        st.session_state["authenticated"] = False
-
-    # Login logic
-    if not st.session_state["authenticated"]:
-        st.title("Login")
-        username = st.text_input("Username")
-        password = st.text_input("Password", type="password")
-
-        if st.button("Login"):
-            if username == "user1" and password == "password1":
-                st.session_state["authenticated"] = True
-                # Use `st.experimental_rerun()` or `st.experimental_set_query_params()` to immediately refresh
-                st.experimental_set_query_params()  # Forces a re-run, ensuring the session state is updated immediately
-            else:
-                st.error("Invalid username or password")
-    else:
-        st.title(f"Welcome!")
-        if st.button("Logout"):
-            st.session_state["authenticated"] = False
-            st.experimental_set_query_params()  # Forces a re-run immediately
+    
 
 
 # Press the green button in the gutter to run the script.
