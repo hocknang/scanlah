@@ -5,18 +5,23 @@
 import streamlit as st
 import pandas as pd
 from st_aggrid import AgGrid, GridOptionsBuilder
+import json
 
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
     st.title("Title")
 
-    data = {
-        "Name": ["Alice", "Bob", "Charlie", "Diana", "Eva", "Frank", "Grace", "Hannah", "Isaac", "Jack"],
-        "Age": [25, 30, 35, 40, 22, 28, 31, 36, 42, 29],
-        "Country": ["USA", "UK", "Canada", "Australia", "USA", "UK", "Canada", "Australia", "USA", "UK"],
-        "Profession": ["Engineer", "Doctor", "Artist", "Scientist", "Engineer", "Doctor", "Artist", "Scientist",
-                       "Engineer", "Doctor"]
-    }
+    json_data = '''
+    [
+      {"Name": "Alice", "Age": 25, "Country": "USA", "Profession": "Engineer"},
+      {"Name": "Bob", "Age": 30, "Country": "UK", "Profession": "Doctor"},
+      {"Name": "Charlie", "Age": 35, "Country": "Canada", "Profession": "Artist"},
+      {"Name": "Diana", "Age": 40, "Country": "Australia", "Profession": "Scientist"}
+    ]
+    '''
+
+    # Convert JSON string to Python list of dictionaries
+    data = json.loads(json_data)
 
     df = pd.DataFrame(data)
 
