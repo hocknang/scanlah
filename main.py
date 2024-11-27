@@ -117,7 +117,7 @@ def print_hi(name):
         st.title("Login")
 
         # Input fields for username and password
-        username = st.text_input("Enter text (no autocomplete)", placeholder="Type here...")
+        username = st.text_input("Username)", placeholder="Type Username")
         password = st.text_input("Password", type="password")
 
         # Login button
