@@ -19,34 +19,28 @@ def print_hi(name):
 
     df = pd.DataFrame(data)
 
-    st.subheader("Consistent Table Layout")
+    st.subheader("Table with Borders for Each Cell")
 
     # Configure Ag-Grid options
     gb = GridOptionsBuilder.from_dataframe(df)
 
-    # Enable filtering on all columns
-    gb.configure_default_column(filter=True)  # Enables filters for all columns
-
-    # Set layout options
-    gb.configure_grid_options(domLayout="autoHeight")  # Auto adjust height
-    gb.configure_column("Name", cellStyle={"textAlign": "center"})  # Example: Center align column
+    # Enable filtering for all columns
+    gb.configure_default_column(filter=True)  # Add filter capability
+    gb.configure_grid_options(domLayout="autoHeight")  # Dynamic table height
 
     # Build grid options
     grid_options = gb.build()
 
-    # Render Ag-Grid table
+    # Render Ag-Grid with a theme that adds borders
     grid_response = AgGrid(
         df,
         gridOptions=grid_options,
         enable_enterprise_modules=False,
         update_mode="value_changed",
-        fit_columns_on_grid_load=True,  # Auto-adjust column width
-        height=300,  # Set height to prevent extra space
-        theme="balham",  # Clean minimal theme
+        fit_columns_on_grid_load=True,  # Adjust column width
+        height=300,  # Fixed height
+        theme="material",  # Theme that applies borders to cells
     )
-
-    # Extract filtered data
-    filtered_data = grid_response["data"]
 
 
 # Press the green button in the gutter to run the script.
