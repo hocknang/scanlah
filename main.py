@@ -43,9 +43,6 @@ def print_hi(name):
     # Get filtered and displayed data
     filtered_data = grid_response['data']
 
-    st.subheader("Filtered Data Output:")
-    st.dataframe(filtered_data)
-
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
