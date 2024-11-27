@@ -94,50 +94,28 @@ def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
     st.title("Scanlah Database")
 
-    # Predefined usernames and passwords (for demonstration purposes)
-    USER_CREDENTIALS = {
-        "user1": "password1",
-        "user2": "password2",
-        "admin": "admin123",
-    }
-
-    # Login function
-    def login(username, password):
-        if username in USER_CREDENTIALS and USER_CREDENTIALS[username] == password:
-            return True
-        return False
-
-    # Initialize session state for authentication
     if "authenticated" not in st.session_state:
-        st.session_state["authenticated"] = False  # Not authenticated by default
-        st.session_state["username"] = ""  # To store the username
+        st.session_state["authenticated"] = False
+        st.session_state["username"] = ""
+        st.session_state["password"] = ""
 
-    # Authentication flow
     if not st.session_state["authenticated"]:
         st.title("Login")
-
-        # Input fields for username and password
-        username = st.text_input("Username)", placeholder="Type Username")
+        username = st.text_input("Username")
         password = st.text_input("Password", type="password")
 
-        # Login button
         if st.button("Login"):
-            if login(username, password):
+            if username == "user1" and password == "password1":
                 st.session_state["authenticated"] = True
                 st.session_state["username"] = username
-                st.success("Login successful!")
-                st.experimental_rerun()  # Refresh the page to show the authenticated state
+                st.session_state.clear()  # This will clear the session state and trigger a re-run
             else:
                 st.error("Invalid username or password")
     else:
         st.title(f"Welcome, {st.session_state['username']}!")
-        st.write("You are logged in.")
-
-        # Logout button
         if st.button("Logout"):
             st.session_state["authenticated"] = False
-            st.session_state["username"] = ""
-            st.experimental_rerun()
+            st.session_state.clear()  # This will reset everything and trigger a re-run
 
 
 # Press the green button in the gutter to run the script.
