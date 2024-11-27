@@ -84,7 +84,7 @@ def print_hi(name):
         update_mode="value_changed",
         fit_columns_on_grid_load=True,  # Adjust column width
         height=300,  # Fixed height
-        theme="streamlit",  # Theme that applies borders to cells
+        theme="alpine",  # Theme that applies borders to cells
     )
 
     # Extract filtered data
