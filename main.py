@@ -92,7 +92,7 @@ def test():
 
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
-    st.title("Title")
+    st.title("Scanlah Database")
 
 
 
