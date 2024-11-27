@@ -107,6 +107,11 @@ def print_hi(name):
     if st.session_state['logged_in']:
         st.success("Welcome! You are now logged in.")
 
+        """"""
+        inventory_api_key = st.secrets["CALL_INVENTORY_ID"]
+        st.write(inventory_api_key)
+
+
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
