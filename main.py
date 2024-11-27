@@ -28,33 +28,33 @@ def print_hi(name):
     gb.configure_default_column(filter=True)  # Add filter capability
     gb.configure_grid_options(domLayout="autoHeight")  # Dynamic table height
 
-    # Set custom filterParams to align the "Age" filter to the right
+    # Manually configure column definitions with customized filter alignment
     column_defs = [
         {
             "headerName": col,
             "field": col,
             "filter": "agTextColumnFilter" if col != "Age" else "agNumberColumnFilter",
             "filterParams": {
-                "textCustomComparator": None,
                 "buttons": ["reset", "apply"],
             },
             "cellStyle": {
-                "textAlign": "left",  # Ensure text is aligned to the left for text columns
+                "textAlign": "left",  # Ensure text columns are aligned to the left
             },
         }
         for col in df.columns
     ]
 
-    # Make Age column filter appear on the right
-    column_defs[1]["filterParams"]["textAlign"] = "right"  # Age column filter alignment
+    # Align the "Age" filter to the right (filter alignment)
+    # For numeric columns like "Age", you can set the filter alignment here
+    column_defs[1]["filterParams"] = {
+        "textAlign": "right"  # Align Age filter to the right
+    }
 
-    # Apply custom column definitions
-    gb.configure_column_defs(column_defs)
-
-    # Build grid options
+    # Include the columnDefs in the grid options
     grid_options = gb.build()
+    grid_options["columnDefs"] = column_defs  # Set the custom columnDefs
 
-    # Render Ag-Grid with a theme that adds borders
+    # Render Ag-Grid with borders and filters
     grid_response = AgGrid(
         df,
         gridOptions=grid_options,
