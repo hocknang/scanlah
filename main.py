@@ -40,7 +40,7 @@ def print_hi(name):
             text-align: center;  /* Optional: Center-align header text */
         }
         .ag-theme-material .ag-row {
-            border-bottom: 1px solid #ddd;  /* Optional: add row borders */
+            border-bottom: 1px solid black !important;  /* Optional: add row borders */
         }
     """
 
