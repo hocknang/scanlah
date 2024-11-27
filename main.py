@@ -6,6 +6,7 @@ import streamlit as st
 import pandas as pd
 from st_aggrid import AgGrid, GridOptionsBuilder
 import json
+import requests
 
 
 def test():
@@ -110,7 +111,15 @@ def print_hi(name):
         """"""
         inventory_api_key = st.secrets["CALL_INVENTORY_ID"]
 
-        
+        response = requests.get(url)
+
+        # Check if the request was successful
+        if response.status_code == 200:
+            # Parse the response JSON (assuming it's a JSON response)
+            data = response.json()
+            st.write("Results:", data)
+        else:
+            st.error(f"Failed to fetch data. Status code: {response.status_code}")
 
 
 
