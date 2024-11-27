@@ -94,8 +94,6 @@ def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
     st.title("Scanlah Database")
 
-    st.title("Welcome to the App")
-
     # Check if the user is logged in
     if 'logged_in' not in st.session_state:
         st.session_state['logged_in'] = False
