@@ -28,6 +28,29 @@ def print_hi(name):
     gb.configure_default_column(filter=True)  # Add filter capability
     gb.configure_grid_options(domLayout="autoHeight")  # Dynamic table height
 
+    # Set custom filterParams to align the "Age" filter to the right
+    column_defs = [
+        {
+            "headerName": col,
+            "field": col,
+            "filter": "agTextColumnFilter" if col != "Age" else "agNumberColumnFilter",
+            "filterParams": {
+                "textCustomComparator": None,
+                "buttons": ["reset", "apply"],
+            },
+            "cellStyle": {
+                "textAlign": "left",  # Ensure text is aligned to the left for text columns
+            },
+        }
+        for col in df.columns
+    ]
+
+    # Make Age column filter appear on the right
+    column_defs[1]["filterParams"]["textAlign"] = "right"  # Age column filter alignment
+
+    # Apply custom column definitions
+    gb.configure_column_defs(column_defs)
+
     # Build grid options
     grid_options = gb.build()
 
@@ -41,12 +64,6 @@ def print_hi(name):
         height=300,  # Fixed height
         theme="streamlit",  # Theme that applies borders to cells
     )
-
-    # Extract filtered data
-    filtered_data = grid_response["data"]
-
-    st.subheader("Filtered Data Output:")
-    st.dataframe(filtered_data)
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
