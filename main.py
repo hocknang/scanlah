@@ -19,7 +19,7 @@ def print_hi(name):
 
     df = pd.DataFrame(data)
 
-    st.subheader("Table with Borders Around Every Cell")
+    st.subheader("Table with Borders for Each Cell")
 
     # Configure Ag-Grid options
     gb = GridOptionsBuilder.from_dataframe(df)
@@ -28,29 +28,10 @@ def print_hi(name):
     gb.configure_default_column(filter=True)  # Add filter capability
     gb.configure_grid_options(domLayout="autoHeight")  # Dynamic table height
 
-    # Add custom CSS for borders in each cell
-    custom_css = """
-        .ag-theme-material .ag-cell,
-        .ag-theme-material .ag-header-cell {
-            border: 1px solid black !important;  /* Border for each cell */
-            padding: 8px;  /* Optional: control the cell padding */
-        }
-        .ag-theme-material .ag-header-cell {
-            font-weight: bold;  /* Optional: Make header text bold */
-            text-align: center;  /* Optional: Center-align header text */
-        }
-        .ag-theme-material .ag-row {
-            border-bottom: 1px solid #ddd;  /* Optional: add row borders */
-        }
-    """
-
-    # Set the CSS to apply to the grid container
-    st.markdown(f'<style>{custom_css}</style>', unsafe_allow_html=True)
-
     # Build grid options
     grid_options = gb.build()
 
-    # Render Ag-Grid with the custom style
+    # Render Ag-Grid with a theme that adds borders
     grid_response = AgGrid(
         df,
         gridOptions=grid_options,
@@ -58,10 +39,14 @@ def print_hi(name):
         update_mode="value_changed",
         fit_columns_on_grid_load=True,  # Adjust column width
         height=300,  # Fixed height
-        theme="material",  # Base theme
+        theme="streamlit",  # Theme that applies borders to cells
     )
 
+    # Extract filtered data
+    filtered_data = grid_response["data"]
 
+    st.subheader("Filtered Data Output:")
+    st.dataframe(filtered_data)
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
