@@ -108,7 +108,6 @@ def print_hi(name):
             if username == "user1" and password == "password1":
                 st.session_state["authenticated"] = True
                 st.session_state["username"] = username
-                st.session_state.clear()  # This will clear the session state and trigger a re-run
             else:
                 st.error("Invalid username or password")
     else:
