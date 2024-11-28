@@ -130,8 +130,7 @@ def print_hi(name):
                               "&pageAction=retrieveSingleRecord&databaseName=INVENTORY&uniqueID=" + data[i]["value"] + \
                               "&identifyID=" + str(random_uuid)
 
-                    st.write(callURL)
-
+                    data_records.append(callURL)
 
                     if i == len(data) - 1:  # Check if `i` is the last index
                         st.write("last data: " + data[i]["value"])
@@ -139,6 +138,8 @@ def print_hi(name):
                 for m in range(0, len(uuid_records)):
                     st.write("uuid : " + str(uuid_records[m]))
 
+                for n in range(0,len(data_records)):
+                    st.write("url: " + data_records[n])
 
 
             else:
