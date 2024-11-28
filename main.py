@@ -126,13 +126,13 @@ def print_hi(name):
 
             """"""
             for i in range(1, len(data)):
-                st.write(data[i]["value"])
                 st.write(st.secrets["CALL_RETRIEVE_RECORDS"])
+                data_records.append(data[i]["value"])
 
                 if i == len(data) - 1:  # Check if `i` is the last index
                     st.write("last data: " + data[i]["value"])
 
-                    
+            st.write()
 
         else:
             st.error(f"Failed to fetch data. Status code: {response.status_code}")
