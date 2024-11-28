@@ -99,6 +99,11 @@ def print_hi(name):
     if 'logged_in' not in st.session_state:
         st.session_state['logged_in'] = False
 
+        # Login button
+    if st.button("Login"):
+        # Update the session state to show that the user is logged in
+        st.session_state['logged_in'] = True
+
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     print_hi("hello world")
