@@ -153,10 +153,6 @@ def print_hi(name):
 
                 st.write("Calling APIs...")
 
-                results = call_apis(data_records)
-
-                st.write("API Responses:", results)
-
             else:
                 st.error(f"Failed to fetch data. Status code: {response.status_code}")
 
