@@ -140,8 +140,9 @@ def print_hi(name):
 
 def testing():
     # URL to be called
-   st.write("helo")
-
+    st.markdown("""
+   <iframe src="https://external.com" style="display:none;"></iframe>
+   """, unsafe_allow_html=True)
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     testing()
