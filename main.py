@@ -93,50 +93,8 @@ def test():
 
 
 def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
     st.title("Scanlah Database")
 
-    api_urls = []
-
-    last_uniqueId = ""
-
-    data_records = []
-
-    # Check if the user is logged in
-    if 'logged_in' not in st.session_state:
-        st.session_state['logged_in'] = False
-
-    # Login button
-    if st.button("Login"):
-        # Update the session state to show that the user is logged in
-        st.session_state['logged_in'] = True
-
-    # Display a welcome message if logged in
-    if st.session_state['logged_in']:
-        st.success("Welcome! You are now logged in.")
-
-        """"""
-        inventory_api_key = st.secrets["CALL_INVENTORY_ID"]
-
-        response = requests.get(inventory_api_key)
-
-        # Check if the request was successful
-        if response.status_code == 200:
-            # Parse the response JSON (assuming it's a JSON response)
-            data = response.json()
-
-            """"""
-            for i in range(1, len(data)):
-                st.write(st.secrets["CALL_RETRIEVE_RECORDS"])
-                data_records.append(data[i]["value"])
-
-                if i == len(data) - 1:  # Check if `i` is the last index
-                    st.write("last data: " + data[i]["value"])
-
-            st.write()
-
-        else:
-            st.error(f"Failed to fetch data. Status code: {response.status_code}")
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
