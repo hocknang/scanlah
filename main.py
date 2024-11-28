@@ -105,7 +105,7 @@ def call_api(url):
         print(f"An error occurred with {url}: {e}")
 
 #Schedule
-def call_api_status(url):
+def call_api_status():
     global counter, exit_flag
     st.write("hello world" + str(counter))
 
