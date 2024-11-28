@@ -97,6 +97,8 @@ def print_hi(name):
 
     data_records = []
 
+    uuid_records = []
+
     # Check if the user is logged in
     if 'logged_in' not in st.session_state:
         st.session_state['logged_in'] = False
@@ -118,11 +120,14 @@ def print_hi(name):
                 # Parse the response JSON (assuming it's a JSON response)
                 data = response.json()
                 random_uuid = uuid.uuid4()
-                st.write(random_uuid)
+                uuid_records.append(random_uuid)
 
                 for i in range(1, len(data)):
                     if i == len(data) - 1:  # Check if `i` is the last index
                         st.write("last data: " + data[i]["value"])
+
+                for m in range(1, len(uuid_records)):
+                    st.write("uuid : " + uuid_records[m])
 
 
 
