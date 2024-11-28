@@ -104,6 +104,10 @@ def print_hi(name):
         # Update the session state to show that the user is logged in
         st.session_state['logged_in'] = True
 
+        # Display a welcome message if logged in
+        if st.session_state['logged_in']:
+            st.success("Welcome! You are now logged in.")
+
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     print_hi("hello world")
