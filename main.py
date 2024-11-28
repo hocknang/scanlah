@@ -8,6 +8,8 @@ from st_aggrid import AgGrid, GridOptionsBuilder
 import json
 import requests
 import uuid
+import asyncio
+import aiohttp
 
 
 def test():
@@ -91,6 +93,21 @@ def test():
         theme="material",  # Theme that applies borders to cells
     )
 
+# Asynchronous function to fetch API data
+async def fetch_data(session, url):
+    async with session.get(url) as response:
+        return await response.json()
+
+async def call_apis(urls):
+
+    async with aiohttp.ClientSession() as session:
+        # Create a list of tasks for all API calls
+        tasks = [fetch_data(session, url) for url in urls]
+
+        # Wait for all API calls to complete
+        results = await asyncio.gather(*tasks)
+
+        return results
 
 def print_hi(name):
     st.title("Scanlah Database")
@@ -135,11 +152,12 @@ def print_hi(name):
                     if i == len(data) - 1:  # Check if `i` is the last index
                         st.write("last data: " + data[i]["value"])
 
-                for m in range(0, len(uuid_records)):
-                    st.write("uuid : " + str(uuid_records[m]))
+                for m in range(0,len(data_records)):
+                    st.write("url: " + data_records[m])
 
-                for n in range(0,len(data_records)):
-                    st.write("url: " + data_records[n])
+                st.write("Calling APIs...")
+
+
 
 
             else:
