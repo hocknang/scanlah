@@ -95,6 +95,9 @@ def test():
 def print_hi(name):
     st.title("Scanlah Database")
 
+    # Check if the user is logged in
+    if 'logged_in' not in st.session_state:
+        st.session_state['logged_in'] = False
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
