@@ -97,6 +97,8 @@ def print_hi(name):
 
     api_urls = [];
 
+    last_uniqueId = ""
+
     # Check if the user is logged in
     if 'logged_in' not in st.session_state:
         st.session_state['logged_in'] = False
@@ -123,6 +125,9 @@ def print_hi(name):
             """"""
             for i in range(1, len(data)):
                 st.write(data[i]["value"])
+
+                if i == len(data) - 1:  # Check if `i` is the last index
+                    st.write("last data: " + data[i]["value"])
 
         else:
             st.error(f"Failed to fetch data. Status code: {response.status_code}")
