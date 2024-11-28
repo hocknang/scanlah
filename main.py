@@ -138,11 +138,8 @@ def print_hi(name):
         else:
             st.error(f"Failed to fetch data. Status code: {response.status_code}")
 
-def testing():
-    # URL to be called
-    st.write("hello world")
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    testing()
+    print_hi("hello world")
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
