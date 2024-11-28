@@ -95,9 +95,11 @@ def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
     st.title("Scanlah Database")
 
-    api_urls = [];
+    api_urls = []
 
     last_uniqueId = ""
+
+    data_records = []
 
     # Check if the user is logged in
     if 'logged_in' not in st.session_state:
