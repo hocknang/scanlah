@@ -120,7 +120,9 @@ def print_hi(name):
             # Parse the response JSON (assuming it's a JSON response)
             data = response.json()
 
-            st.write(len(data))
+            """"""
+            for i in range(1, len(data)):
+                st.write(i)
 
         else:
             st.error(f"Failed to fetch data. Status code: {response.status_code}")
