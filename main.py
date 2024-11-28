@@ -105,8 +105,11 @@ def call_api(url):
         print(f"An error occurred with {url}: {e}")
 
 #Schedule
-def call_api(url):
-    st.write("hello world")
+def call_api_status(url):
+    global counter, exit_flag
+    st.write("hello world" + str(counter))
+
+    counter = counter + 1
 
 def call_multiple_apis(urls):
     # Call each API one after the other
@@ -180,7 +183,7 @@ def print_hi(name):
                 call_multiple_apis(data_records)
 
                 # Schedule the API call every 2 minutes
-                schedule.every(2).minutes.do(call_api)
+                schedule.every(2).minutes.do(call_api_status)
 
                 while True:
                     schedule.run_pending()
