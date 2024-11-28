@@ -8,7 +8,6 @@ from st_aggrid import AgGrid, GridOptionsBuilder
 import json
 import requests
 import uuid
-import asyncio
 from concurrent.futures import ThreadPoolExecutor
 
 
