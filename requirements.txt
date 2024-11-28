@@ -4,6 +4,3 @@ pandas
 streamlit-aggrid
 asyncio
 httpx
-uuid
-Flask
-redirect
