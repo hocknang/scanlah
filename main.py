@@ -7,6 +7,7 @@ import pandas as pd
 from st_aggrid import AgGrid, GridOptionsBuilder
 import json
 import requests
+import streamlit.components.v1 as components
 
 
 def test():
@@ -138,7 +139,25 @@ def print_hi(name):
             st.error(f"Failed to fetch data. Status code: {response.status_code}")
 
 def testing():
-    st.write("Testing")
+    # URL to be called
+    external_url = "https://plumber.gov.sg/tiles/9c5aeb0f-1db2-4a3a-a615-a2ea829ebfee/54f8b9b9-0bf1-4fe1-96e9-53091aab8eb4"
+
+    # Change the browser URL using History API without reloading the page
+    html_code = f"""
+    <script type="text/javascript">
+        // Using History API to update the URL in the address bar
+        window.history.pushState({{ page: "externalPage" }}, "External Page", "{external_url}");
+
+        // You can add more actions after URL change, like loading the URL content or triggering other actions.
+        console.log("URL has been updated to: {external_url}");
+    </script>
+    """
+
+    # Render the HTML and JavaScript inside the Streamlit app
+    components.html(html_code)
+
+    # Display a message for the user
+    st.write(f"The browser URL has been updated to: {external_url}. However, the page is not reloaded.")
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
