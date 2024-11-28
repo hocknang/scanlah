@@ -163,8 +163,6 @@ def print_hi(name):
 
                 call_multiple_apis(data_records)
 
-                while()
-
             else:
                 st.error(f"Failed to fetch data. Status code: {response.status_code}")
 
