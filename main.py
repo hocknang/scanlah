@@ -99,15 +99,12 @@ async def fetch_data(session, url):
         return await response.json()
 
 async def call_apis(urls):
+    
+    with ThreadPoolExecutor() as executor:
+        # Fetch all the API responses concurrently
+        results = list(executor.map(fetch_data, urls))
 
-    async with aiohttp.ClientSession() as session:
-        # Create a list of tasks for all API calls
-        tasks = [fetch_data(session, url) for url in urls]
-
-        # Wait for all API calls to complete
-        results = await asyncio.gather(*tasks)
-
-        return results
+    return results
 
 def print_hi(name):
     st.title("Scanlah Database")
