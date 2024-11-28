@@ -8,8 +8,6 @@ from st_aggrid import AgGrid, GridOptionsBuilder
 import json
 import requests
 import uuid
-import aiohttp
-import asyncio
 
 
 def test():
@@ -92,17 +90,6 @@ def test():
         fit_columns_on_grid_load=True,  # Adjust column width
         theme="material",  # Theme that applies borders to cells
     )
-async def call_api(url):
-    async with aiohttp.ClientSession() as session:
-        try:
-            async with session.get(url) as response:
-                if response.status == 200:
-                    data = await response.json()
-                    print(f"API Response from {url}:", data)
-                else:
-                    print(f"API Call Failed for {url}: {response.status}")
-        except aiohttp.ClientError as e:
-            print(f"An error occurred with {url}: {e}")
 def print_hi(name):
     st.title("Scanlah Database")
 
