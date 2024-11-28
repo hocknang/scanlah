@@ -104,9 +104,9 @@ def call_api(url):
     except requests.exceptions.RequestException as e:
         print(f"An error occurred with {url}: {e}")
 
-def call_api():
+#Schedule
+def call_api(url):
     st.write("hello world")
-
 
 def call_multiple_apis(urls):
     # Call each API one after the other
@@ -180,9 +180,14 @@ def print_hi(name):
                 call_multiple_apis(data_records)
 
                 # Schedule the API call every 2 minutes
-                schedule.every(2).minutes.do(call_api_and_check_condition)
+                schedule.every(2).minutes.do(call_api)
 
-
+                while True:
+                    schedule.run_pending()
+                    if exit_flag:  # Stop the loop if all APIs are called
+                        print("Exiting scheduler loop.")
+                        break
+                    time.sleep(1)  # Sleep to reduce CPU usage
 
             else:
                 st.error(f"Failed to fetch data. Status code: {response.status_code}")
