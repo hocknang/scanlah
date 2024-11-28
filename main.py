@@ -132,6 +132,8 @@ def print_hi(name):
                 if i == len(data) - 1:  # Check if `i` is the last index
                     st.write("last data: " + data[i]["value"])
 
+                    
+
         else:
             st.error(f"Failed to fetch data. Status code: {response.status_code}")
 
