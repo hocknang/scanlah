@@ -8,6 +8,8 @@ from st_aggrid import AgGrid, GridOptionsBuilder
 import json
 import requests
 import uuid
+import schedule
+import time
 
 
 def test():
@@ -116,6 +118,8 @@ def print_hi(name):
 
     uuid_records = []
 
+    status_records = []
+
     # Check if the user is logged in
     if 'logged_in' not in st.session_state:
         st.session_state['logged_in'] = False
@@ -158,6 +162,8 @@ def print_hi(name):
                 st.write("Calling APIs...")
 
                 call_multiple_apis(data_records)
+
+                while()
 
             else:
                 st.error(f"Failed to fetch data. Status code: {response.status_code}")
