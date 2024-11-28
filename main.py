@@ -143,7 +143,7 @@ def print_hi(name):
 
                     callURL = "https://script.google.com/macros/s/" \
                               "AKfycbzy1rIffd9zFVr1z9IkbRoQi71vSdRT2yKfswT4mRAoW0JwF8R_26cwSuPCvbfgWF9L/exec?" \
-                              "pageAction=retrieveSingleRecord&databaseName=INVENTORY&uniqueID=" + data[i]["value"] + \
+                              "pageAction=retrieveSingleRecord&databaseName=INVENTORY&uniqueId=" + data[i]["value"] + \
                               "&identifyID=" + str(random_uuid)
 
                     data_records.append(callURL)
