@@ -4,3 +4,4 @@ pandas
 streamlit-aggrid
 openpyx
 asyncio
+httpx
