@@ -7,7 +7,7 @@ import pandas as pd
 from st_aggrid import AgGrid, GridOptionsBuilder
 import json
 import requests
-import streamlit.components.v1 as components
+import uuid
 
 
 def test():
@@ -95,6 +95,8 @@ def test():
 def print_hi(name):
     st.title("Scanlah Database")
 
+    data_records = []
+
     # Check if the user is logged in
     if 'logged_in' not in st.session_state:
         st.session_state['logged_in'] = False
@@ -120,10 +122,11 @@ def print_hi(name):
                     if i == len(data) - 1:  # Check if `i` is the last index
                         st.write("last data: " + data[i]["value"])
 
-                st.write("wait")
+
 
             else:
                 st.error(f"Failed to fetch data. Status code: {response.status_code}")
+
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
