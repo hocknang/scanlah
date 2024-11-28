@@ -113,8 +113,8 @@ def print_hi(name):
             st.success("Welcome! You are now logged in.")
 
             response = requests.get("https://script.google.com/macros/s/"
-                                    "AKfycbzy1rIffd9zFVr1z9IkbRoQi71vSdRT2yKfswT4mRAoW0JwF8R_26cwSuPCvbfgWF9L"
-                                    "/exec?pageAction=retrieveAllUniqueID_Inventory")
+                                    "AKfycbzy1rIffd9zFVr1z9IkbRoQi71vSdRT2yKfswT4mRAoW0JwF8R_26cwSuPCvbfgWF9L/"
+                                    "exec?pageAction=retrieveAllUniqueID_Inventory")
 
             if response.status_code == 200:
                 # Parse the response JSON (assuming it's a JSON response)
@@ -124,6 +124,14 @@ def print_hi(name):
 
                     random_uuid = uuid.uuid4()
                     uuid_records.append(random_uuid)
+
+                    callURL = "https://script.google.com/macros/s/" \
+                              "AKfycbzy1rIffd9zFVr1z9IkbRoQi71vSdRT2yKfswT4mRAoW0JwF8R_26cwSuPCvbfgWF9L/exec?" \
+                              "&pageAction=retrieveSingleRecord&databaseName=INVENTORY&uniqueID=" + data[i]["value"] + \
+                              "&identifyID=" + str(random_uuid)
+
+                    st.write(callURL)
+
 
                     if i == len(data) - 1:  # Check if `i` is the last index
                         st.write("last data: " + data[i]["value"])
