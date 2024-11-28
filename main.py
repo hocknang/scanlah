@@ -105,11 +105,14 @@ def call_api(url):
         print(f"An error occurred with {url}: {e}")
 
 
+def call_api_and_check_condition():
+    global exit_flag, counter
+
+
 def call_multiple_apis(urls):
     # Call each API one after the other
     for url in urls:
         call_api(url)
-
 
 def print_hi(name):
     st.title("Scanlah Database")
@@ -119,6 +122,11 @@ def print_hi(name):
     uuid_records = []
 
     status_records = []
+
+    # Flag to control the scheduler
+    exit_flag = False
+
+    counter = 0
 
     # Check if the user is logged in
     if 'logged_in' not in st.session_state:
@@ -153,15 +161,29 @@ def print_hi(name):
 
                     data_records.append(callURL)
 
+                    callStatus = "https://script.google.com/macros/s/" \
+                                 "AKfycbzy1rIffd9zFVr1z9IkbRoQi71vSdRT2yKfswT4mRAoW0JwF8R_26cwSuPCvbfgWF9L/exec?" \
+                                 "pageAction=getUniqueStatus&uniqueId=" + str(random_uuid)
+
+                    status_records.append(callStatus)
+
                     if i == len(data) - 1:  # Check if `i` is the last index
                         st.write("last data: " + data[i]["value"])
 
                 for m in range(0, len(data_records)):
                     st.write("url: " + data_records[m])
 
+                for o in range(0, len(status_records)):
+                    st.write("status: " + data_records[m])
+
                 st.write("Calling APIs...")
 
                 call_multiple_apis(data_records)
+
+                # Schedule the API call every 2 minutes
+                schedule.every(2).minutes.do(call_api_and_check_condition)
+
+
 
             else:
                 st.error(f"Failed to fetch data. Status code: {response.status_code}")
