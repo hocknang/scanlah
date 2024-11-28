@@ -122,7 +122,7 @@ def print_hi(name):
 
             """"""
             for i in range(1, len(data)):
-                st.write(i)
+                st.write(data[i]["value"])
 
         else:
             st.error(f"Failed to fetch data. Status code: {response.status_code}")
