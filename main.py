@@ -90,6 +90,19 @@ def test():
         fit_columns_on_grid_load=True,  # Adjust column width
         theme="material",  # Theme that applies borders to cells
     )
+
+
+def call_api(url):
+    try:
+        response = requests.get(url)
+        if response.status_code == 200:
+            print(f"API Response from {url}: {response.json()}")
+        else:
+            print(f"API Call Failed for {url}: {response.status_code}")
+    except requests.exceptions.RequestException as e:
+        print(f"An error occurred with {url}: {e}")
+
+
 def print_hi(name):
     st.title("Scanlah Database")
 
