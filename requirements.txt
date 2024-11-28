@@ -4,3 +4,4 @@ pandas
 streamlit-aggrid
 asyncio
 httpx
+uuid
