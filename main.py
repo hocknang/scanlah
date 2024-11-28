@@ -9,7 +9,6 @@ import json
 import requests
 import uuid
 import asyncio
-import aiohttp
 
 
 def test():
