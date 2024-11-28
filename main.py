@@ -104,9 +104,8 @@ def call_api(url):
     except requests.exceptions.RequestException as e:
         print(f"An error occurred with {url}: {e}")
 
-
-def call_api_and_check_condition():
-    global exit_flag, counter
+def call_api():
+    st.write("hello world")
 
 
 def call_multiple_apis(urls):
