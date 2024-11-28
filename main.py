@@ -108,6 +108,21 @@ def print_hi(name):
         if st.session_state['logged_in']:
             st.success("Welcome! You are now logged in.")
 
+            response = requests.get("https://script.google.com/macros/s/"
+                                    "AKfycbzy1rIffd9zFVr1z9IkbRoQi71vSdRT2yKfswT4mRAoW0JwF8R_26cwSuPCvbfgWF9L"
+                                    "/exec?pageAction=retrieveAllUniqueID_Inventory")
+
+            if response.status_code == 200:
+                # Parse the response JSON (assuming it's a JSON response)
+                data = response.json()
+
+                for i in range(1, len(data)):
+                    if i == len(data) - 1:  # Check if `i` is the last index
+                        st.write("last data: " + data[i]["value"])
+
+            else:
+                st.error(f"Failed to fetch data. Status code: {response.status_code}")
+
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     print_hi("hello world")
