@@ -126,7 +126,7 @@ def print_hi(name):
                     if i == len(data) - 1:  # Check if `i` is the last index
                         st.write("last data: " + data[i]["value"])
 
-                for m in range(1, len(uuid_records)):
+                for m in range(0, len(uuid_records)):
                     st.write("uuid : " + uuid_records[m])
 
 
