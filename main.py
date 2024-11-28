@@ -103,6 +103,12 @@ def call_api(url):
         print(f"An error occurred with {url}: {e}")
 
 
+def call_multiple_apis(urls):
+    # Call each API one after the other
+    for url in urls:
+        call_api(url)
+
+
 def print_hi(name):
     st.title("Scanlah Database")
 
@@ -150,6 +156,8 @@ def print_hi(name):
                     st.write("url: " + data_records[m])
 
                 st.write("Calling APIs...")
+
+                call_multiple_apis(data_records)
 
             else:
                 st.error(f"Failed to fetch data. Status code: {response.status_code}")
