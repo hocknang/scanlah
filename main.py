@@ -127,7 +127,7 @@ def print_hi(name):
                         st.write("last data: " + data[i]["value"])
 
                 for m in range(0, len(uuid_records)):
-                    st.write("uuid : " + uuid_records[m])
+                    st.write("uuid : " + str(uuid_records[m]))
 
 
 
