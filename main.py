@@ -99,7 +99,7 @@ async def fetch_data(session, url):
         return await response.json()
 
 async def call_apis(urls):
-    
+
     with ThreadPoolExecutor() as executor:
         # Fetch all the API responses concurrently
         results = list(executor.map(fetch_data, urls))
@@ -154,6 +154,7 @@ def print_hi(name):
 
                 st.write("Calling APIs...")
 
+                results = call_apis(data_records)
 
 
 
