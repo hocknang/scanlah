@@ -119,10 +119,12 @@ def print_hi(name):
             if response.status_code == 200:
                 # Parse the response JSON (assuming it's a JSON response)
                 data = response.json()
-                random_uuid = uuid.uuid4()
-                uuid_records.append(random_uuid)
 
                 for i in range(1, len(data)):
+
+                    random_uuid = uuid.uuid4()
+                    uuid_records.append(random_uuid)
+
                     if i == len(data) - 1:  # Check if `i` is the last index
                         st.write("last data: " + data[i]["value"])
 
