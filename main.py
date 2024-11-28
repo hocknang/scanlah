@@ -117,7 +117,9 @@ def print_hi(name):
         if response.status_code == 200:
             # Parse the response JSON (assuming it's a JSON response)
             data = response.json()
-            st.write(data[0]["value"])
+
+            
+
         else:
             st.error(f"Failed to fetch data. Status code: {response.status_code}")
 
