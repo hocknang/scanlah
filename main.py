@@ -8,7 +8,6 @@ from st_aggrid import AgGrid, GridOptionsBuilder
 import json
 import requests
 import uuid
-from concurrent.futures import ThreadPoolExecutor
 
 
 def test():
@@ -92,18 +91,6 @@ def test():
         theme="material",  # Theme that applies borders to cells
     )
 
-# Asynchronous function to fetch API data
-async def fetch_data(session, url):
-    async with session.get(url) as response:
-        return await response.json()
-
-async def call_apis(urls):
-
-    with ThreadPoolExecutor() as executor:
-        # Fetch all the API responses concurrently
-        results = list(executor.map(fetch_data, urls))
-
-    return results
 
 def print_hi(name):
     st.title("Scanlah Database")
@@ -148,14 +135,10 @@ def print_hi(name):
                     if i == len(data) - 1:  # Check if `i` is the last index
                         st.write("last data: " + data[i]["value"])
 
-                for m in range(0,len(data_records)):
+                for m in range(0, len(data_records)):
                     st.write("url: " + data_records[m])
 
                 st.write("Calling APIs...")
-
-                results = call_apis(data_records)
-
-                st.write("API Responses:", results)
 
             else:
                 st.error(f"Failed to fetch data. Status code: {response.status_code}")
